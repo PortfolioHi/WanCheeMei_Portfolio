@@ -675,20 +675,27 @@
             position: absolute;
             width: 24px;
             height: 24px;
-            background: var(--card-bg);
+            background: var(--main-color); /* 预设改为实心主色 */
             border: 4px solid var(--main-color);
             border-radius: 50%;
             top: 25px;
             z-index: 1;
             transition: var(--transition);
         }
-        body.active .timeline-item::after { border-color: var(--accent-color); }
+        /* 暗黑模式也加上实心背景色 */
+        body.active .timeline-item::after { 
+            background: var(--accent-color); 
+            border-color: var(--accent-color); 
+        }
         
         .timeline-item:hover::after {
             background: var(--main-color);
             box-shadow: 0 0 15px var(--main-color);
         }
-        body.active .timeline-item:hover::after { background: var(--accent-color); box-shadow: 0 0 15px var(--accent-color); }
+        body.active .timeline-item:hover::after { 
+            background: var(--accent-color); 
+            box-shadow: 0 0 15px var(--accent-color); 
+        }
 
         /* 左侧项目：圆点对齐最右侧并强制中心居中 */
         .timeline-item:nth-child(odd)::after {
@@ -1376,11 +1383,7 @@
     <section class="home" id="home">
         <div class="social">
 
-<!--        <a href="https://www.facebook.com/cindymei2424/" target="_blank"><i class='bx bxl-facebook'></i></a>
-            <a href="https://www.instagram.com/cindyy_meii/" target="_blank"><i class='bx bxl-instagram' ></i></a> -->
-
-
-            <a href="https://www.linkedin.com/in/chee-mei-wan-85983626a/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
+<a href="https://www.linkedin.com/in/chee-mei-wan-85983626a/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
             <a href="mailto:cindymei2424@gmail.com"><i class='bx bxl-gmail' ></i></a>
             <a href="https://drive.google.com/drive/folders/1XVvBTo2iZhp1tjZabZI6J37hJqhIeyUu?usp=drive_link" target="_blank"><i class='bx bxl-google-cloud' ></i></a>
             <a href="https://api.whatsapp.com/send?phone=60127832221" target="_blank"><i class='bx bxl-whatsapp' ></i></a>        
@@ -1425,7 +1428,7 @@
                     </div>
                 </div>
                 <div class="about-buttons">
-                    <a href="img/Resume Wan Chee Mei(1).pdf" class="btn" target="_blank">Download Resume</a>
+                    <a href="img/CV Wan Chee Mei.pdf" class="btn" target="_blank">Download Resume</a>
                     <a href="https://drive.google.com/drive/folders/1XVvBTo2iZhp1tjZabZI6J37hJqhIeyUu?usp=drive_link" target="_blank" class="btn">View G-Drive Portfolio</a>
                 </div>
             </div>
@@ -1676,11 +1679,7 @@
         <div class="footer-social">
 
 
-       <!-- <a href="https://www.facebook.com/cindymei2424/" target="_blank" title="Facebook"><i class='bx bxl-facebook'></i></a>
-            <a href="https://www.instagram.com/cindyy_meii/" target="_blank" title="Instagram"><i class='bx bxl-instagram'></i></a> -->
-
-
-            <a href="https://www.linkedin.com/in/chee-mei-wan-85983626a/" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+       <a href="https://www.linkedin.com/in/chee-mei-wan-85983626a/" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
             <a href="mailto:cindymei2424@gmail.com" title="Email Me"><i class='bx bxl-gmail'></i></a>
             <a href="https://api.whatsapp.com/send?phone=60127832221" target="_blank" title="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
         </div>
@@ -1806,4 +1805,5 @@
         });
     </script>
 </body>
+
 </html>
