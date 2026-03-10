@@ -340,7 +340,6 @@
         .home-img img {
             width: 100%;
             max-width: 480px;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
             animation: float 5s ease-in-out infinite;
         }
 
@@ -454,11 +453,13 @@
             width: 100%;
             max-width: 400px;
             border-radius: 24px;
+            box-shadow: 0 15px 20px rgba(37, 99, 235, 0.25);
             transition: var(--transition);
             z-index: 2;
         }
 
         body.active .about-img img {
+            box-shadow: 0 15px 25px rgba(139, 92, 246, 0.25);
         }
 
         .about-text h1 {
@@ -614,7 +615,7 @@
             box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
         }
 
-        /* --- TIMELINE (Experience & Education) 完美对齐版 --- */
+        /* --- TIMELINE (Experience) --- */
         .timeline-section {
             background: var(--section-bg);
             border-top: 1px solid var(--border-color);
@@ -673,14 +674,13 @@
             position: absolute;
             width: 24px;
             height: 24px;
-            background: var(--main-color); /* 预设改为实心主色 */
+            background: var(--main-color);
             border: 4px solid var(--main-color);
             border-radius: 50%;
             top: 25px;
             z-index: 1;
             transition: var(--transition);
         }
-        /* 暗黑模式也加上实心背景色 */
         body.active .timeline-item::after { 
             background: var(--accent-color); 
             border-color: var(--accent-color); 
@@ -695,19 +695,17 @@
             box-shadow: 0 0 15px var(--accent-color); 
         }
 
-        /* 左侧项目：圆点对齐最右侧并强制中心居中 */
         .timeline-item:nth-child(odd)::after {
             right: 0;
             transform: translateX(50%);
         }
 
-        /* 右侧项目：圆点对齐最左侧并强制中心居中 */
         .timeline-item:nth-child(even)::after {
             left: 0;
             transform: translateX(-50%);
         }
 
-        /* 时间轴卡片 */
+        /* 时间轴与教育卡片共用样式 */
         .timeline-content {
             padding: 30px;
             background: var(--card-bg);
@@ -772,23 +770,27 @@
             border: 1px solid var(--border-color);
         }
         
-        .abstract-box {
-            background: rgba(37, 99, 235, 0.05);
-            padding: 15px;
-            border-left: 4px solid var(--main-color);
-            border-radius: 0 8px 8px 0;
-            margin-top: 15px;
-            font-size: 0.9rem !important;
-            text-align: justify;
+        /* --- EDUCATION GRID (Side-by-side layout) --- */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        body.active .abstract-box { background: rgba(139, 92, 246, 0.05); border-left-color: var(--accent-color); }
-        
-        .event-list { margin-top: 15px;}
-        .event-list li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-muted); padding-left: 15px; position: relative;}
-        .event-list li::before { content: '▹'; position: absolute; left: 0; color: var(--main-color); font-weight: bold;}
-        body.active .event-list li::before { color: var(--accent-color); }
-        .event-list li strong { color: var(--text-color); display: block;}
 
+        /* Scroll reveal animation specifically for education cards */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 100%;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* --- 作品集 (Uniform Grid & Glassmorphism Hover) --- */
         .portfolio {
@@ -875,12 +877,12 @@
             max-height: 90vh;
             border-radius: 12px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            transform: scale(0.8); /* 初始缩小状态 */
+            transform: scale(0.8);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .lightbox.active img {
-            transform: scale(1); /* 弹出时放大至原比例 */
+            transform: scale(1);
         }
         
         .lightbox-close {
@@ -1321,10 +1323,15 @@
             .website-grid, .portfolio-grid {
                 grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             }
+            
+            /* 將學歷區塊變成單行 */
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
 
             .video-content { padding: 40px 20px; }
 
-            /* Timeline Mobile Adjustment - 强制共享相同原点中心 */
+            /* Timeline Mobile Adjustment */
             .timeline::after {
                 left: 31px; 
                 transform: translateX(-50%); 
@@ -1370,7 +1377,8 @@
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#experience">Experience</a></li>
-	    <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#website">Website</a></li> 
             <li><a href="#video">Video</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -1380,8 +1388,7 @@
 
     <section class="home" id="home">
         <div class="social">
-
-<a href="https://www.linkedin.com/in/chee-mei-wan-85983626a/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
+            <a href="https://www.linkedin.com/in/chee-mei-wan-85983626a/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
             <a href="mailto:cindymei2424@gmail.com"><i class='bx bxl-gmail' ></i></a>
             <a href="https://drive.google.com/drive/folders/1XVvBTo2iZhp1tjZabZI6J37hJqhIeyUu?usp=drive_link" target="_blank"><i class='bx bxl-google-cloud' ></i></a>
             <a href="https://api.whatsapp.com/send?phone=60127832221" target="_blank"><i class='bx bxl-whatsapp' ></i></a>        
@@ -1493,23 +1500,9 @@
 
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <span class="timeline-date">July 2025 - Present</span>
-                    <h3>Part Time Video Editor</h3>
-                    <h4>QUAD FILM MALAYSIA</h4>
-                    <p><i class='bx bx-map'></i> Remote</p>
-                    <div class="skills-tags">
-                        <span>Video Editing</span>
-                        <span>Time Management</span>
-                        <span>Communication</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-content">
                     <span class="timeline-date">March 2024 - Present</span>
-                    <h3>Graphic Designer & Marketing Executive</h3>
-                    <h4>OTTICA TRADING (M) SDN BHD</h4>
+                    <h3>Graphic Designer</h3>
+                    <h4>Ottica Trading (M) SDN BHD</h4>
                     <p><i class='bx bx-map'></i> Kuala Lumpur, Malaysia</p>
                     <div class="skills-tags">
                         <span>Printing Design</span>
@@ -1520,12 +1513,39 @@
                     </div>
                 </div>
             </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">July 2025 - Present</span>
+                    <h3>Part Time Video Editor</h3>
+                    <h4>QUAD Film Malaysia By P10X</h4>
+                    <p><i class='bx bx-map'></i> Remote</p>
+                    <div class="skills-tags">
+                        <span>Video Editing</span>
+                        <span>Time Management</span>
+                        <span>Communication</span>
+                    </div>
+                </div>
+            </div>
             
             <div class="timeline-item">
                 <div class="timeline-content">
+                    <span class="timeline-date">Oct 2024 - Dec 2024</span>
+                    <h3>Part Time Graphic Design</h3>
+                    <h4>Nutrigold Sdn. Bhd.</h4>
+                    <p><i class='bx bx-map'></i> Remote</p>
+                    <div class="skills-tags">
+                        <span>Social Media Design</span>
+                        <span>Poster Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
                     <span class="timeline-date">June 2023 - Jan 2024</span>
-                    <h3>Graphic Design Intern</h3>
-                    <h4>TRUEMONEY MALAYSIA</h4>
+                    <h3>Intern Graphic Design</h3>
+                    <h4>TrueMoney Malaysia</h4>
                     <p><i class='bx bx-map'></i> Kuala Lumpur, Malaysia</p>
                     <div class="skills-tags">
                         <span>Graphic Design</span>
@@ -1536,57 +1556,62 @@
 
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <span class="timeline-date">Jan 2022 - May 2023</span>
-                    <h3>Compliance Analyst</h3>
-                    <h4>BINANCE</h4>
-                    <p><i class='bx bx-map'></i> Remote</p>
-                    <div class="skills-tags">
-                        <span>Time Management</span>
-                        <span>KYC Verification</span>
-                        <span>Data Analysis & Documentation Review</span>
-                    </div>
+                    <span class="timeline-date">Feb 2020 - Present</span>
+                    <h3>Part-time Reading Teacher</h3>
+                    <h4>Smart Little Beans Early Reading Centre</h4>
+                    <p><i class='bx bx-map'></i> Cheras, Malaysia</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">2019 - 2020</span>
+                    <h3>Barista</h3>
+                    <h4>Bread Maison</h4>
+                    <p><i class='bx bx-map'></i> Kuala Lumpur, Malaysia</p>
                 </div>
             </div>
 
         </div>
     </section>
 
+    <!-- 改良後的 Education Section -->
     <section class="timeline-section education-section" id="education">
         <div class="heading">
             <span>Academic Background</span>
             <h2>Education</h2>
         </div>
         
-        <div class="timeline">
+        <div class="education-grid">
+            
+            <div class="fade-up">
+                <div class="timeline-content" style="height: 100%;">
+                    <span class="timeline-date">Jan 2021 – Dec 2023</span>
+                    <h3>BSc (Hons) Multimedia Computing, Information Technology</h3>
+                    <h4>YPC International College</h4>
+                    <p><i class='bx bxs-graduation'></i> First-Class Honors</p>
+                    <div class="skills-tags">
+                        <span>Graphic Design</span>
+                        <span>Packaging Design</span>
+                        <span>Motion Graphic</span>
+                        <span>Video Editing</span>
+                        <span>Web Development</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="timeline-item">
-        <div class="timeline-content">
-        <span class="timeline-date">Jan 2021 – Dec 2023</span>
-        <h3>BSc (Hons) Multimedia Computing, Information Technology</h3>
-        <h4>YPC International College</h4>
-        <p><i class='bx bxs-graduation'></i> First-Class Honors</p>
-        <div class="skills-tags">
-            <span>Graphic Design</span>
-            <span>Packaging Design</span>
-            <span>Motion Graphic</span>
-            <span>Video Editing</span>
-            <span>Web Development</span>
-        </div>
-        </div>
-        </div>
-
-        <div class="timeline-item">
-        <div class="timeline-content">
-        <span class="timeline-date">Jan 2018 – Dec 2019</span>
-        <h3>Foundation Studies in Arts</h3>
-        <h4>HELP College of Arts and Technology</h4>
-        <div class="skills-tags">
-            <span>Multimedia Design</span>
-            <span>Web Development</span>
-            <span>Information Technology</span>
-        </div>
-        </div>
-        </div>
+            <div class="fade-up">
+                <div class="timeline-content" style="height: 100%;">
+                    <span class="timeline-date">Jan 2018 – Dec 2019</span>
+                    <h3>Foundation Studies in Arts</h3>
+                    <h4>HELP College of Arts and Technology</h4>
+                    <div class="skills-tags" style="margin-top: 25px;">
+                        <span>Multimedia Design</span>
+                        <span>Web Development</span>
+                        <span>Information Technology</span>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>
@@ -1675,9 +1700,7 @@
     <div class="footer" id="contact">
         <h2>Contact Me</h2> 
         <div class="footer-social">
-
-
-       <a href="https://www.linkedin.com/in/chee-mei-wan-85983626a/" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+            <a href="https://www.linkedin.com/in/chee-mei-wan-85983626a/" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
             <a href="mailto:cindymei2424@gmail.com" title="Email Me"><i class='bx bxl-gmail'></i></a>
             <a href="https://api.whatsapp.com/send?phone=60127832221" target="_blank" title="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
         </div>
@@ -1775,8 +1798,9 @@
             });
         }, { threshold: 0.1 });
 
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach(item => {
+        // Update selector to include both experience timeline and new education cards
+        const animateItems = document.querySelectorAll('.timeline-item, .fade-up');
+        animateItems.forEach(item => {
             timelineObserver.observe(item);
         });
 
@@ -1803,6 +1827,4 @@
         });
     </script>
 </body>
-
 </html>
-
